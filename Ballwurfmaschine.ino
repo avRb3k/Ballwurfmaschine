@@ -1,3 +1,5 @@
+#include <credentials.h>
+
 // constants won't change. They're used here to
 // set pin numbers:
 //const int onoff = 2;     // Betriebsmodus
@@ -8,28 +10,18 @@ const int manuell = 6;     // manuell auslösen
 const int frei = 8;     // vorne frei
 const int freioben = 7;     // oben frei
 
-
 const int motor =  3;      // Motor läuft
 const int ledstatus =  13; 
 
-
 bool ballstate;
-
 bool freistate;
-
 bool rundestate;
-
 bool manuellstate;
-
 bool freiobenstate;
-
 bool motorstate;
-
 bool aktivstate;
 
 #define DEBUG  // serial debuging
-
-
 
 void setup() {
   // initialize the LED pin as an output:
@@ -47,7 +39,6 @@ Serial.begin(9600);
 #endif
 
 }
-
 
 void serial(){
 Serial.println("ball");
@@ -73,26 +64,15 @@ Serial.println(aktivstate);
 Serial.println("________________________________________");
 }
 
-
-  
 void loop() {
 
-
 ballstate = digitalRead(ball);
-
 freistate = digitalRead(frei);
-
 rundestate = digitalRead(runde);
-
 manuellstate = digitalRead(manuell);
-
 freiobenstate = digitalRead(freioben);
-
 motorstate = digitalRead(motor);
-
 aktivstate = digitalRead(aktiv);
-
-
 
 delay(100);
 
@@ -101,8 +81,6 @@ delay(100);
  serial();
 
 #endif
-
-
 
 delay(300);
 
@@ -116,12 +94,12 @@ delay(100);
   if (digitalRead(aktiv) == HIGH){ //automatikbetrieb
     
   digitalWrite(ledstatus,HIGH);
-  
 
     if (((digitalRead(ball) == LOW) and (digitalRead(frei) == LOW) and (digitalRead(freioben) == LOW)))  {   // wenn der ball da ist geht es los oder manuell gedrückt
       while (((digitalRead(runde) == HIGH) and (digitalRead(frei) == LOW) and (digitalRead(freioben) == LOW))){//solange die Runde noch nicht durch 
       digitalWrite(motor,LOW);
 
+// hier noch abfangen was passiert wenn rudi eingreift, danach weiter fahren
 #ifdef DEBUG
 
 serial();
@@ -130,7 +108,7 @@ serial();
 
       delay(50);
       }
-      delay(60); //noch ein bisschen weiter laufen lassen bis der taster überfahren
+      delay(60); //noch ein bisschen weiter laufen lassen bis der Ini überfahren
       digitalWrite(motor,HIGH);
     } else {
     // nichts passiert
