@@ -1,3 +1,3 @@
 # Ballwurfmaschine
 
-## Ballwurfmaschine fuer Rudi
+## Ball throwing machine for Rudi
